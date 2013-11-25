@@ -4,7 +4,7 @@
     <title>BTC Quot</title>
     <link rel="stylesheet" type="text/css" href="/css/app.css" media="all" />
   </head>
-  <body ng-controller="TradeController">
+  <body ng-controller="QuotController">
     <div class="row">
       <div class="large-12">
         <h1>BTC Quot</h1>
@@ -20,21 +20,21 @@
             </tr>
             <tr>
                 <td>BTC China</td>
-                <td ng-bind="btcChinaTrade.ticker.last"></td>
-                <td ng-bind="btcChinaTrade.ticker.buy"></td>
-                <td ng-bind="btcChinaTrade.ticker.sell"></td>
-                <td ng-bind="btcChinaTrade.ticker.high"></td>
-                <td ng-bind="btcChinaTrade.ticker.low"></td>
-                <td ng-bind="btcChinaTrade.ticker.vol"></td>
+                <td ng-bind="btcChinaQuot.ticker.last"></td>
+                <td ng-bind="btcChinaQuot.ticker.buy"></td>
+                <td ng-bind="btcChinaQuot.ticker.sell"></td>
+                <td ng-bind="btcChinaQuot.ticker.high"></td>
+                <td ng-bind="btcChinaQuot.ticker.low"></td>
+                <td ng-bind="btcChinaQuot.ticker.vol"></td>
             </tr>
             <tr>
                 <td>FXBTC</td>
-                <td ng-bind="fxBtcTrade.ticker.last_rate"></td>
-                <td ng-bind="fxBtcTrade.ticker.bid"></td>
-                <td ng-bind="fxBtcTrade.ticker.ask"></td>
-                <td ng-bind="fxBtcTrade.ticker.high"></td>
-                <td ng-bind="fxBtcTrade.ticker.low"></td>
-                <td ng-bind="fxBtcTrade.ticker.vol"></td>
+                <td ng-bind="fxBtcQuot.ticker.last_rate"></td>
+                <td ng-bind="fxBtcQuot.ticker.bid"></td>
+                <td ng-bind="fxBtcQuot.ticker.ask"></td>
+                <td ng-bind="fxBtcQuot.ticker.high"></td>
+                <td ng-bind="fxBtcQuot.ticker.low"></td>
+                <td ng-bind="fxBtcQuot.ticker.vol"></td>
             </tr>
         </table>
       </div>

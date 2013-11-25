@@ -5,8 +5,7 @@
 
 var express = require('express');
 var routes = require('./routes');
-var fxBtc = require('./routes/fxBtc');
-var btcChina = require('./routes/btcChina');
+var quot = require('./routes/quot');
 var http = require('http');
 var path = require('path');
 
@@ -30,8 +29,7 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
-app.get('/fxBtc', fxBtc.query);
-app.get('/btcChina', btcChina.query);
+app.get('/quot', quot.query);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
