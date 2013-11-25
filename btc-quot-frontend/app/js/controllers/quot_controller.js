@@ -8,6 +8,15 @@
         if(data.fxBtc){
           $scope.fxBtcQuot = data.fxBtc;
         }
+        if(data.mtgox){
+          $scope.mtgoxQuot = data.mtgox;
+        }
+        if(data.bitstamp){
+          $scope.bitstampQuot = data.bitstamp;
+        }
+        if(data.q796){
+          $scope.q796Quot = data.q796;
+        }
       });
     },2000);
   });
