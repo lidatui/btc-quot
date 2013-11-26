@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html ng-app="app">
+  <head>
+    <title>BTC Quot</title>
+    <link rel="stylesheet" type="text/css" href="/css/app.css" media="all" />
+  </head>
+  <body ng-controller="QuotController">
+    <div class="row">
+      <div class="large-12">
+        <h1>BTC Quot</h1>
+        <table class="quot">
+            <thead>
+            <tr>
+                <th>市场</th>
+                <th>最新价</th>
+                <th>买入价</th>
+                <th>卖出价</th>
+                <th>最高价</th>
+                <th>最低价</th>
+                <th>成交量</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>MT.GOX</td>
+                <td ng-bind="mtgoxQuot.data.last.display" class="{{quotStyle.mtgox}}"></td>
+                <td ng-bind="mtgoxQuot.data.buy.display"></td>
+                <td ng-bind="mtgoxQuot.data.sell.display"></td>
+                <td ng-bind="mtgoxQuot.data.high.display"></td>
+                <td ng-bind="mtgoxQuot.data.low.display"></td>
+                <td ng-bind="mtgoxQuot.data.vol.value+'BTC'"></td>
+            </tr>
+            <tr>
+                <td>Bitstamp</td>
+                <td ng-bind="bitstampQuot.last|currency" class="{{quotStyle.bitstamp}}"></td>
+                <td ng-bind="bitstampQuot.bid|currency"></td>
+                <td ng-bind="bitstampQuot.ask|currency"></td>
+                <td ng-bind="bitstampQuot.high|currency"></td>
+                <td ng-bind="bitstampQuot.low|currency"></td>
+                <td ng-bind="bitstampQuot.volume+'BTC'"></td>
+            </tr>
+            <tr>
+                <td>796期货</td>
+                <td ng-bind="q796Quot.return.last|currency" class="{{quotStyle.q796}}"></td>
+                <td ng-bind="q796Quot.return.buy|currency"></td>
+                <td ng-bind="q796Quot.return.sell|currency"></td>
+                <td ng-bind="q796Quot.return.high|currency"></td>
+                <td ng-bind="q796Quot.return.low|currency"></td>
+                <td ng-bind="q796Quot.return.vol+'BTC'"></td>
+            </tr>
+            <tr>
+                <td>BTC China</td>
+                <td ng-bind="btcChinaQuot.ticker.last|currency:'¥'" class="{{quotStyle.btcChina}}"></td>
+                <td ng-bind="btcChinaQuot.ticker.buy|currency:'¥'"></td>
+                <td ng-bind="btcChinaQuot.ticker.sell|currency:'¥'"></td>
+                <td ng-bind="btcChinaQuot.ticker.high|currency:'¥'"></td>
+                <td ng-bind="btcChinaQuot.ticker.low|currency:'¥'"></td>
+                <td ng-bind="btcChinaQuot.ticker.vol+'BTC'"></td>
+            </tr>
+            <tr>
+                <td>FXBTC</td>
+                <td ng-bind="fxBtcQuot.ticker.last_rate|currency:'¥'" class="{{quotStyle.fxBtc}}"></td>
+                <td ng-bind="fxBtcQuot.ticker.bid|currency:'¥'"></td>
+                <td ng-bind="fxBtcQuot.ticker.ask|currency:'¥'"></td>
+                <td ng-bind="fxBtcQuot.ticker.high|currency:'¥'"></td>
+                <td ng-bind="fxBtcQuot.ticker.low|currency:'¥'"></td>
+                <td ng-bind="fxBtcQuot.ticker.vol+'BTC'"></td>
+            </tr>
+            </tbody>
+        </table>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="/js/app.js"></script>
+  </body>
+</html>
