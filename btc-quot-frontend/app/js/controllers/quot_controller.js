@@ -35,8 +35,8 @@
         $scope.quotStyle.btcChinaFade = 'fade';
         $timeout(function(){
           $scope.quotStyle.btcChinaFade = 'fade-out';
-        })
-      })
+        });
+      });
     });
 
     $scope.$watch('fxBtcQuot.ticker.last_rate', function(newValue, oldValue){
@@ -53,8 +53,8 @@
         $scope.quotStyle.fxBtcFade = 'fade';
         $timeout(function(){
           $scope.quotStyle.fxBtcFade = 'fade-out';
-        })
-      })
+        });
+      });
 
     });
 
@@ -71,8 +71,8 @@
         $scope.quotStyle.mtgoxFade = 'fade';
         $timeout(function(){
           $scope.quotStyle.mtgoxFade = 'fade-out';
-        })
-      })
+        });
+      });
     });
 
     $scope.$watch('bitstampQuot.last', function(newValue, oldValue){
@@ -88,8 +88,8 @@
         $scope.quotStyle.bitstampFade = 'fade';
         $timeout(function(){
           $scope.quotStyle.bitstampFade = 'fade-out';
-        })
-      })
+        });
+      });
     });
 
     $scope.$watch('q796Quot.return.last', function(newValue, oldValue){
@@ -105,8 +105,8 @@
         $scope.quotStyle.q796Fade = 'fade';
         $timeout(function(){
           $scope.quotStyle.q796Fade = 'fade-out';
-        })
-      })
+        });
+      });
     });
 
   });
