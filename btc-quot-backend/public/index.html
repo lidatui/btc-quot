@@ -21,7 +21,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
+            <tr class="{{quotStyle.mtgoxFade}}">
                 <td>MT.GOX</td>
                 <td ng-bind="mtgoxQuot.data.last.display" class="{{quotStyle.mtgox}}"></td>
                 <td ng-bind="mtgoxQuot.data.buy.display"></td>
@@ -30,7 +30,7 @@
                 <td ng-bind="mtgoxQuot.data.low.display"></td>
                 <td ng-bind="mtgoxQuot.data.vol.value+'BTC'"></td>
             </tr>
-            <tr>
+            <tr class="{{quotStyle.bitstampFade}}">
                 <td>Bitstamp</td>
                 <td ng-bind="bitstampQuot.last|currency" class="{{quotStyle.bitstamp}}"></td>
                 <td ng-bind="bitstampQuot.bid|currency"></td>
@@ -39,7 +39,7 @@
                 <td ng-bind="bitstampQuot.low|currency"></td>
                 <td ng-bind="bitstampQuot.volume+'BTC'"></td>
             </tr>
-            <tr>
+            <tr class="{{quotStyle.q796Fade}}">
                 <td>796期货</td>
                 <td ng-bind="q796Quot.return.last|currency" class="{{quotStyle.q796}}"></td>
                 <td ng-bind="q796Quot.return.buy|currency"></td>
@@ -48,7 +48,7 @@
                 <td ng-bind="q796Quot.return.low|currency"></td>
                 <td ng-bind="q796Quot.return.vol+'BTC'"></td>
             </tr>
-            <tr>
+            <tr class="{{quotStyle.btcChinaFade}}">
                 <td>BTC China</td>
                 <td ng-bind="btcChinaQuot.ticker.last|currency:'¥'" class="{{quotStyle.btcChina}}"></td>
                 <td ng-bind="btcChinaQuot.ticker.buy|currency:'¥'"></td>
@@ -57,7 +57,7 @@
                 <td ng-bind="btcChinaQuot.ticker.low|currency:'¥'"></td>
                 <td ng-bind="btcChinaQuot.ticker.vol+'BTC'"></td>
             </tr>
-            <tr>
+            <tr class="{{quotStyle.fxBtcFade}}">
                 <td>FXBTC</td>
                 <td ng-bind="fxBtcQuot.ticker.last_rate|currency:'¥'" class="{{quotStyle.fxBtc}}"></td>
                 <td ng-bind="fxBtcQuot.ticker.bid|currency:'¥'"></td>
