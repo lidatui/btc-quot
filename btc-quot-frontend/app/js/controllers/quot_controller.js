@@ -1,5 +1,5 @@
-(function(ng){
-  ng.module('app').controller('QuotController',function($scope,$interval, QuotService){
+(function(angular){
+  angular.module('app').controller('QuotController',function($scope,$interval, QuotService){
     $scope.quotStyle = {};
     $interval(function(){
       QuotService.query().success(function(data){

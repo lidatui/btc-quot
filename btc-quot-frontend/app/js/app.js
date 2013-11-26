@@ -1,3 +1,3 @@
-(function(ng){
-  ng.module('app',[]);
+(function(angular){
+  angular.module('app',[]);
 })(angular);
