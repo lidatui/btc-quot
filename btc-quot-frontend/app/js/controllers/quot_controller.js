@@ -1,5 +1,5 @@
 (function(angular){
-  angular.module('app').controller('QuotController',function($scope,$interval, QuotService){
+  angular.module('app').controller('QuotController',function($scope,$interval,$timeout, QuotService){
     $scope.quotStyle = {};
     $interval(function(){
       QuotService.query().success(function(data){
@@ -31,6 +31,12 @@
       }else{
         $scope.quotStyle.btcChina = 'down';
       }
+      $timeout(function(){
+        $scope.quotStyle.btcChinaFade = 'fade';
+        $timeout(function(){
+          $scope.quotStyle.btcChinaFade = 'fade-out';
+        })
+      })
     });
 
     $scope.$watch('fxBtcQuot.ticker.last_rate', function(newValue, oldValue){
@@ -42,6 +48,14 @@
       }else{
         $scope.quotStyle.fxBtc = 'down';
       }
+
+      $timeout(function(){
+        $scope.quotStyle.fxBtcFade = 'fade';
+        $timeout(function(){
+          $scope.quotStyle.fxBtcFade = 'fade-out';
+        })
+      })
+
     });
 
     $scope.$watch('mtgoxQuot.data.last.value', function(newValue, oldValue){
@@ -53,6 +67,12 @@
       }else{
         $scope.quotStyle.mtgox = 'down';
       }
+      $timeout(function(){
+        $scope.quotStyle.mtgoxFade = 'fade';
+        $timeout(function(){
+          $scope.quotStyle.mtgoxFade = 'fade-out';
+        })
+      })
     });
 
     $scope.$watch('bitstampQuot.last', function(newValue, oldValue){
@@ -64,6 +84,12 @@
       }else{
         $scope.quotStyle.bitstamp = 'down';
       }
+      $timeout(function(){
+        $scope.quotStyle.bitstampFade = 'fade';
+        $timeout(function(){
+          $scope.quotStyle.bitstampFade = 'fade-out';
+        })
+      })
     });
 
     $scope.$watch('q796Quot.return.last', function(newValue, oldValue){
@@ -75,6 +101,12 @@
       }else{
         $scope.quotStyle.q796 = 'down';
       }
+      $timeout(function(){
+        $scope.quotStyle.q796Fade = 'fade';
+        $timeout(function(){
+          $scope.quotStyle.q796Fade = 'fade-out';
+        })
+      })
     });
 
   });
