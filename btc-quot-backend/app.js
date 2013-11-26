@@ -34,3 +34,8 @@ app.get('/quot', quot.query);
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
+
+
+process.on('uncaughtException',function(error){
+  console.log(error);
+});
