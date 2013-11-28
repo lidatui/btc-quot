@@ -1,10 +1,19 @@
-h1,h2,h3,h4,h5 {
-  text-align: center;
+.antialiased {
+  -webkit-font-smoothing: antialiased;
 }
 
-button {
-  margin-bottom: 0px !important;
+.top-bar{
+  margin-bottom: 20px;
+  height: 45px;
+  background: #333333;
 }
+
+.top-bar .title-area{
+  height: inherit;
+  padding: 0 15px;
+  color: #fff;
+}
+
 
 .up{
   color: #b00 !important;
@@ -24,34 +33,52 @@ button {
   -webkit-transition: background 4s ease-in-out;
 }
 
-table.quot{
+table{
   margin: auto;
-  width: 920px;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 2px;
 }
 
-
-table.quot {
-  background: white;
-  border: solid 1px #dddddd;
-}
-table.quot thead, table.quot tfoot {
-  background: whitesmoke;
-  font-weight: bold;
-}
-table.quot thead tr th, table.quot thead tr td, table.quot tfoot tr th, table.quot tfoot tr td {
-  padding: 5px;
+table th,table td{
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 14.28%;
+  margin: 2px;
+  padding: 8px;
+  font-size: 12px;
+  line-height: 1rem;
   color: #222222;
   text-align: left;
 }
-table.quot tr th, table.quot tr td {
-  width: 14.28%;
-  padding: 5px;
-  font-size: 12px;
-  color: #222222;
+
+table th{
+  background: whitesmoke;
+  font-weight: bold;
 }
-table.quot tr.even, table.quot tr.alt, table.quot tr:nth-of-type(even) {
+
+table tr:nth-of-type(even) {
   background: #f9f9f9;
 }
-table.quot thead tr th, table.quot tfoot tr th, table tbody.quot tr td, table.quot tr td, table.quot tfoot tr td {
-  display: table-cell;
+
+table.quot{
+  margin-bottom: 20px;
 }
+
+table.quot th,table.quot td{
+  width: 14.28%;
+  text-align: right;
+}
+
+table.quot th:first-child,table.quot tr td:first-child{
+  text-align: left;
+}
+
+table.spread th,table.spread td{
+  text-align: right;
+}
+
+table.spread tr th:first-child{
+  text-align: left;
+}
+

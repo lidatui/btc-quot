@@ -35,7 +35,7 @@
         $scope.quotStyle.btcChinaFade = 'fade';
         $timeout(function(){
           $scope.quotStyle.btcChinaFade = 'fade-out';
-        });
+        },10);
       });
     });
 
@@ -53,7 +53,7 @@
         $scope.quotStyle.fxBtcFade = 'fade';
         $timeout(function(){
           $scope.quotStyle.fxBtcFade = 'fade-out';
-        });
+        },10);
       });
 
     });
@@ -71,7 +71,7 @@
         $scope.quotStyle.mtgoxFade = 'fade';
         $timeout(function(){
           $scope.quotStyle.mtgoxFade = 'fade-out';
-        });
+        },10);
       });
     });
 
@@ -88,7 +88,7 @@
         $scope.quotStyle.bitstampFade = 'fade';
         $timeout(function(){
           $scope.quotStyle.bitstampFade = 'fade-out';
-        });
+        },10);
       });
     });
 
@@ -105,7 +105,7 @@
         $scope.quotStyle.q796Fade = 'fade';
         $timeout(function(){
           $scope.quotStyle.q796Fade = 'fade-out';
-        });
+        },10);
       });
     });
 
