@@ -25,7 +25,7 @@
             </thead>
             <tbody>
             <tr class="{{quotStyle.mtgoxFade}}">
-                <td>MT.GOX</td>
+                <td><a href="https://www.mtgox.com/" target="_blank">MT.GOX</a></td>
                 <td ng-bind="mtgoxQuot.data.last.display" class="{{quotStyle.mtgox}}"></td>
                 <td ng-bind="mtgoxQuot.data.buy.display"></td>
                 <td ng-bind="mtgoxQuot.data.sell.display"></td>
@@ -34,7 +34,7 @@
                 <td ng-bind="mtgoxQuot.data.vol.value | number: 2"></td>
             </tr>
             <tr class="{{quotStyle.bitstampFade}}">
-                <td>Bitstamp</td>
+                <td><a href="https://www.bitstamp.net/" target="_blank">Bitstamp</a></td>
                 <td ng-bind="bitstampQuot.last|currency" class="{{quotStyle.bitstamp}}"></td>
                 <td ng-bind="bitstampQuot.bid|currency"></td>
                 <td ng-bind="bitstampQuot.ask|currency"></td>
@@ -43,7 +43,7 @@
                 <td ng-bind="bitstampQuot.volume | number: 2"></td>
             </tr>
             <tr class="{{quotStyle.q796Fade}}">
-                <td>796期货</td>
+                <td><a href="https://796.com/" target="_blank">796期货</a></td>
                 <td ng-bind="q796Quot.return.last|currency" class="{{quotStyle.q796}}"></td>
                 <td ng-bind="q796Quot.return.buy|currency"></td>
                 <td ng-bind="q796Quot.return.sell|currency"></td>
@@ -52,7 +52,7 @@
                 <td ng-bind="q796Quot.return.vol| number: 2"></td>
             </tr>
             <tr class="{{quotStyle.btcChinaFade}}">
-                <td>BTC China</td>
+                <td><a href="https://btcchina.com/‎" target="_blank">BTC China</a></td>
                 <td ng-bind="btcChinaQuot.ticker.last|currency:'¥'" class="{{quotStyle.btcChina}}"></td>
                 <td ng-bind="btcChinaQuot.ticker.buy|currency:'¥'"></td>
                 <td ng-bind="btcChinaQuot.ticker.sell|currency:'¥'"></td>
@@ -61,13 +61,22 @@
                 <td ng-bind="btcChinaQuot.ticker.vol| number: 2"></td>
             </tr>
             <tr class="{{quotStyle.fxBtcFade}}">
-                <td>FXBTC</td>
+                <td><a href="http://www.fxbtc.com/‎" target="_blank">FXBTC</a></td>
                 <td ng-bind="fxBtcQuot.ticker.last_rate|currency:'¥'" class="{{quotStyle.fxBtc}}"></td>
                 <td ng-bind="fxBtcQuot.ticker.bid|currency:'¥'"></td>
                 <td ng-bind="fxBtcQuot.ticker.ask|currency:'¥'"></td>
                 <td ng-bind="fxBtcQuot.ticker.high|currency:'¥'"></td>
                 <td ng-bind="fxBtcQuot.ticker.low|currency:'¥'"></td>
                 <td ng-bind="fxBtcQuot.ticker.vol| number: 2"></td>
+            </tr>
+            <tr class="{{quotStyle.okcoinFade}}">
+                <td><a href="https://www.okcoin.com/‎" target="_blank">OKCoin</a></td>
+                <td ng-bind="okcoinQuot.ticker.last|currency:'¥'" class="{{quotStyle.okcoin}}"></td>
+                <td ng-bind="okcoinQuot.ticker.buy|currency:'¥'"></td>
+                <td ng-bind="okcoinQuot.ticker.sell|currency:'¥'"></td>
+                <td ng-bind="okcoinQuot.ticker.high|currency:'¥'"></td>
+                <td ng-bind="okcoinQuot.ticker.low|currency:'¥'"></td>
+                <td ng-bind="okcoinQuot.ticker.vol| number: 2"></td>
             </tr>
             </tbody>
         </table>
@@ -86,6 +95,7 @@
                 <th>796期货</th>
                 <th>BTC China</th>
                 <th>FXBTC</th>
+                <th>OKCoin</th>
             </tr>
             </thead>
             <tbody>
@@ -96,6 +106,7 @@
                 <td ng-bind="mtgoxQuot.data.last.value - q796Quot.return.last | number: 2"></td>
                 <td></td>
                 <td></td>
+                <td></td>
             </tr>
             <tr>
                 <th>Bitstamp</th>
@@ -104,11 +115,13 @@
                 <td ng-bind="bitstampQuot.last - q796Quot.return.last | number: 2"></td>
                 <td></td>
                 <td></td>
+                <td></td>
             </tr>
             <tr>
                 <th>796期货</th>
                 <td ng-bind="q796Quot.return.last - mtgoxQuot.data.last.value | number: 2"></td>
                 <td ng-bind="q796Quot.return.last - bitstampQuot.last | number: 2"></td>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -120,6 +133,7 @@
                 <td></td>
                 <td></td>
                 <td ng-bind="btcChinaQuot.ticker.last - fxBtcQuot.ticker.last_rate | number: 2"></td>
+                <td ng-bind="btcChinaQuot.ticker.last - okcoinQuot.ticker.last | number: 2"></td>
             </tr>
             <tr>
                 <th>FXBTC</th>
@@ -127,6 +141,16 @@
                 <td></td>
                 <td></td>
                 <td ng-bind="fxBtcQuot.ticker.last_rate - btcChinaQuot.ticker.last | number: 2"></td>
+                <td></td>
+                <td ng-bind="fxBtcQuot.ticker.last_rate - okcoinQuot.ticker.last | number: 2"></td>
+            </tr>
+            <tr>
+                <th>OKCoin</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td ng-bind="okcoinQuot.ticker.last - btcChinaQuot.ticker.last | number: 2"></td>
+                <td ng-bind="okcoinQuot.ticker.last - fxBtcQuot.ticker.last_rate | number: 2"></td>
                 <td></td>
             </tr>
             </tbody>

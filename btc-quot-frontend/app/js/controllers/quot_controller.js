@@ -9,6 +9,9 @@
         if(data.fxBtc){
           $scope.fxBtcQuot = data.fxBtc;
         }
+        if(data.okcoin){
+          $scope.okcoinQuot = data.okcoin;
+        }
         if(data.mtgox){
           $scope.mtgoxQuot = data.mtgox;
         }
@@ -55,7 +58,24 @@
           $scope.quotStyle.fxBtcFade = 'fade-out';
         },10);
       });
+    });
 
+    $scope.$watch('okcoinQuot.ticker.last', function(newValue, oldValue){
+      if(!newValue && !oldValue){
+        return;
+      }
+      if(newValue > oldValue){
+        $scope.quotStyle.okcoin = 'up';
+      }else{
+        $scope.quotStyle.okcoin = 'down';
+      }
+
+      $timeout(function(){
+        $scope.quotStyle.okcoinFade = 'fade';
+        $timeout(function(){
+          $scope.quotStyle.okcoinFade = 'fade-out';
+        },10);
+      });
     });
 
     $scope.$watch('mtgoxQuot.data.last.value', function(newValue, oldValue){

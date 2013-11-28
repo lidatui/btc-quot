@@ -45,6 +45,22 @@ var refresh =  function () {
       });
     });
 
+    https.get("https://www.okcoin.com/api/ticker.do", function (result) {
+      var responseParts = [];
+      result.setEncoding('utf8');
+      result.on("data", function (chunk) {
+        responseParts.push(chunk);
+      });
+      result.on("end", function () {
+        try {
+          console.log('okcoin -> ' + responseParts.join(''));
+          quot.okcoin = JSON.parse(responseParts.join(''));
+        } catch (e) {
+          console.error(e);
+        }
+      });
+    });
+
     https.get("https://data.mtgox.com/api/2/BTCUSD/money/ticker", function (result) {
       var responseParts = [];
       result.setEncoding('utf8');
