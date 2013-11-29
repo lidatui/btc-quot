@@ -6,6 +6,7 @@
 var express = require('express');
 var routes = require('./routes');
 var quot = require('./routes/quot');
+var wechat = require('./routes/wechat');
 var http = require('http');
 var path = require('path');
 
@@ -21,6 +22,7 @@ app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
+app.use(express.query());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -31,12 +33,13 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 app.get('/quot', quot.query);
+app.use('/wechat', wechat.query);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
 
 
-process.on('uncaughtException',function(error){
-  console.log(error);
+process.on('uncaughtException',function(e){
+  console.log(e.toString());
 });

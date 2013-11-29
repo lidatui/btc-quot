@@ -20,7 +20,7 @@ var refresh =  function () {
       });
       result.on("end", function () {
         try {
-          console.log('btcChina -> ' + responseParts.join(''));
+          //console.log('btcChina -> ' + responseParts.join(''));
           quot.btcChina = JSON.parse(responseParts.join(''));
         } catch (e) {
           console.error(e);
@@ -39,7 +39,7 @@ var refresh =  function () {
       });
       result.on("end", function () {
         try {
-          console.log('fxBtc -> ' + responseParts.join(''));
+          //console.log('fxBtc -> ' + responseParts.join(''));
           quot.fxBtc = JSON.parse(responseParts.join(''));
         } catch (e) {
           console.error(e);
@@ -57,7 +57,7 @@ var refresh =  function () {
       });
       result.on("end", function () {
         try {
-          console.log('okcoin -> ' + responseParts.join(''));
+          //console.log('okcoin -> ' + responseParts.join(''));
           quot.okcoin = JSON.parse(responseParts.join(''));
         } catch (e) {
           console.error(e);
@@ -75,7 +75,7 @@ var refresh =  function () {
       });
       result.on("end", function () {
         try {
-          console.log('mtgox -> ' + responseParts.join(''));
+          //console.log('mtgox -> ' + responseParts.join(''));
           quot.mtgox = JSON.parse(responseParts.join(''));
         } catch (e) {
           console.error(e);
@@ -93,7 +93,7 @@ var refresh =  function () {
       });
       result.on("end", function () {
         try {
-          console.log('bitstamp -> ' + responseParts.join(''));
+          //console.log('bitstamp -> ' + responseParts.join(''));
           quot.bitstamp = JSON.parse(responseParts.join(''));
         } catch (e) {
           console.error(e);
@@ -111,7 +111,7 @@ var refresh =  function () {
       });
       result.on("end", function () {
         try {
-          console.log('q796 -> ' + responseParts.join(''));
+          //console.log('q796 -> ' + responseParts.join(''));
           quot.q796 = JSON.parse(responseParts.join(''));
         } catch (e) {
           console.error(e);
