@@ -27,7 +27,9 @@ var refresh =  function () {
         }
 
       });
-    });
+    }).setTimeout(5000,function(){
+        console.log('btcChina timeout......');
+      });
 
     https.get("https://data.fxbtc.com/api?op=query_ticker&symbol=btc_cny", function (result) {
       var responseParts = [];
@@ -43,7 +45,9 @@ var refresh =  function () {
           console.error(e);
         }
       });
-    });
+    }).setTimeout(5000,function(){
+        console.log('fxBtc timeout......');
+      });
 
     https.get("https://www.okcoin.com/api/ticker.do", function (result) {
       var responseParts = [];
@@ -59,7 +63,9 @@ var refresh =  function () {
           console.error(e);
         }
       });
-    });
+    }).setTimeout(5000,function(){
+        console.log('okcoin timeout......');
+      });
 
     https.get("https://data.mtgox.com/api/2/BTCUSD/money/ticker", function (result) {
       var responseParts = [];
@@ -75,7 +81,9 @@ var refresh =  function () {
           console.error(e);
         }
       });
-    });
+    }).setTimeout(5000,function(){
+        console.log('mtgox timeout......');
+      });
 
     https.get("https://www.bitstamp.net/api/ticker/", function (result) {
       var responseParts = [];
@@ -91,7 +99,9 @@ var refresh =  function () {
           console.error(e);
         }
       });
-    });
+    }).setTimeout(5000,function(){
+        console.log('bitstamp timeout......');
+      });;
 
     http.get("http://api.796.com/apiV2/ticker.html?op=futures", function (result) {
       var responseParts = [];
@@ -107,7 +117,9 @@ var refresh =  function () {
           console.error(e);
         }
       });
-    });
+    }).setTimeout(5000,function(){
+        console.log('q796 timeout......');
+      });
   } catch (e) {
     console.error(e);
   }
