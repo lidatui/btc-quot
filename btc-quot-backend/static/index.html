@@ -4,59 +4,11 @@
     <title>BTC Quot</title>
     <link rel="stylesheet" type="text/css" href="/css/app.css" media="all"/>
 </head>
-<body class="antialiased" ng-controller="QuotController">
+<body class="antialiased">
 <nav class="top-bar">
     <a class="title-area">BTC Quot</a>
 </nav>
-<div class="row">
-    <div class="large-12">
-        <h3 class="font-hei">市场行情</h3>
-        <table class="quot">
-            <thead>
-            <tr>
-                <th>市场</th>
-                <th>最新价</th>
-                <th>买入价</th>
-                <th>卖出价</th>
-                <th>最高价</th>
-                <th>最低价</th>
-                <th>成交量</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-class="fadeClass(market)" ng-repeat="(market,q) in quot">
-                <td><a ng-href="{{q.url}}" target="_blank">{{q.title}}</a></td>
-                <td class="{{updownClass(market)}}">{{q.USD.last|currency}} {{q.CNY.last|currency:'¥'}}</td>
-                <td>{{q.USD.buy|currency}} {{q.CNY.buy|currency:'¥'}}</td>
-                <td>{{q.USD.sell|currency}} {{q.CNY.sell|currency:'¥'}}</td>
-                <td>{{q.USD.high|currency}} {{q.CNY.high|currency:'¥'}}</td>
-                <td>{{q.USD.low|currency}} {{q.CNY.low|currency:'¥'}}</td>
-                <td ng-bind="(q.USD.vol || q.CNY.vol ) | number: 2"></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-
-<div class="row">
-    <div class="large-12">
-        <h3 class="font-hei">市场价差对比(CNY)</h3>
-        <table class="spread" >
-            <thead>
-                <tr>
-                    <th></th>
-                    <th ng-repeat="(mt,qt) in quot">{{qt.title}}</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="(m,q) in quot">
-                    <th>{{q.title}}</th>
-                    <td ng-repeat="(mt,qt) in quot" ng-class="subtractClass(subtract(q.CNY.last,qt.CNY.last))">{{subtract(q.CNY.last,qt.CNY.last)}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
+<div ng-view></div>
 
 <script type="text/javascript" src="/js/app.js"></script>
 </body>
