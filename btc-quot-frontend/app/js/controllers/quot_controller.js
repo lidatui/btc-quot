@@ -57,13 +57,23 @@
     $scope.sortExpr = '';
     $scope.sortColumn = '';
     $scope.sort = function(column){
-      $scope.sortColumn = column;
 
-      if($scope.sortColumn !== column){
+      if($scope.sortColumn !== column || $scope.sortColumn === ''){
+        $scope.sortColumn = column;
         $scope.sortExpr = column;
         return;
       }
-      return $scope.sortExpr.indexOf('-') !== -1 ? $scope.sortExpr = column : $scope.sortExpr = '-'+column;
+
+      if($scope.sortExpr.indexOf('-') !== -1){
+        $scope.sortColumn = '';
+        $scope.sortExpr = '';
+        return;
+      }
+
+      if($scope.sortColumn === column){
+        $scope.sortExpr = '-'+column;
+        return;
+      }
     };
 
     var watched = false;
