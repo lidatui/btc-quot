@@ -4,10 +4,16 @@
     var marketStyle = {};
 
     $scope.fadeClass = function(market){
+      if(!marketStyle[market]){
+        marketStyle[market] = {};
+      }
       return marketStyle[market].fadeClass;
     };
 
     $scope.updownClass = function(market){
+      if(!marketStyle[market]){
+        marketStyle[market] = {};
+      }
       return marketStyle[market].updownClass;
     };
 
@@ -56,6 +62,11 @@
     $interval(function(){
       QuotService.query().success(function(data){
         $scope.quot = data;
+        var quotList = [];
+        for(var key in data){
+          quotList.push(data[key]);
+        }
+        $scope.quotList = quotList;
       });
     },2000);
 

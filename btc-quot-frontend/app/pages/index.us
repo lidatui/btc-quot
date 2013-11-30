@@ -24,9 +24,9 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-class="fadeClass(market)" ng-repeat="(market,q) in quot">
+            <tr ng-class="fadeClass(q.market)" ng-repeat="q in quotList | orderBy:q.name">
                 <td><a ng-href="{{q.url}}" target="_blank">{{q.title}}</a></td>
-                <td class="{{updownClass(market)}}">{{q.USD.last|currency}} {{q.CNY.last|currency:'¥'}}</td>
+                <td class="{{updownClass(q.market)}}">{{q.USD.last|currency}} {{q.CNY.last|currency:'¥'}}</td>
                 <td>{{q.USD.buy|currency}} {{q.CNY.buy|currency:'¥'}}</td>
                 <td>{{q.USD.sell|currency}} {{q.CNY.sell|currency:'¥'}}</td>
                 <td>{{q.USD.high|currency}} {{q.CNY.high|currency:'¥'}}</td>
@@ -45,13 +45,13 @@
             <thead>
                 <tr>
                     <th></th>
-                    <th ng-repeat="(mt,qt) in quot">{{qt.title}}</th>
+                    <th ng-repeat="qt in quotList">{{qt.title}}</th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="(m,q) in quot">
+                <tr ng-repeat="q in quotList">
                     <th>{{q.title}}</th>
-                    <td ng-repeat="(mt,qt) in quot" ng-class="subtractClass(subtract(q.CNY.last,qt.CNY.last))">{{subtract(q.CNY.last,qt.CNY.last)}}</td>
+                    <td ng-repeat="qt in quotList" ng-class="subtractClass(subtract(q.CNY.last,qt.CNY.last))">{{subtract(q.CNY.last,qt.CNY.last)}}</td>
                 </tr>
             </tbody>
         </table>

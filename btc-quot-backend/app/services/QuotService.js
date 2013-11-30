@@ -3,30 +3,45 @@ var https = require('https');
 
 
 var QuotData = {
-  btcchina: {
-    title: 'BTC中国',
-    url: 'http://www.btcchina.com'
-  },
-  fxbtc: {
-    title: 'FXBTC',
-    url: 'http://www.fxbtc.com'
-  },
-  okcoin: {
-    title: 'OKCOIN',
-    url: 'https://www.okcoin.com'
-  },
-  q796: {
-    title: '796期货',
-    url: 'https://796.com/'
+  mtgox: {
+    market: 'mtgox',
+    title: 'MT.GOX',
+    url: 'https://www.mtgox.com',
+    order:0
   },
   bitstamp: {
+    market: 'bitstamp',
     title: 'Bitstamp',
-    url: 'https://www.bitstamp.net/'
+    url: 'https://www.bitstamp.net/',
+    order:1
   },
-  mtgox: {
-    title: 'MT.GOX',
-    url: 'https://www.mtgox.com'
+  q796: {
+    market: 'q796',
+    title: '796期货',
+    url: 'https://796.com/',
+    order:2
+  },
+
+  btcchina: {
+    market: 'btcchina',
+    title: 'BTC中国',
+    url: 'http://www.btcchina.com',
+    order:3
+  },
+  fxbtc: {
+    market: 'fxbtc',
+    title: 'FXBTC',
+    url: 'http://www.fxbtc.com',
+    order:4
+  },
+  okcoin: {
+    market: 'okcoin',
+    title: 'OKCOIN',
+    url: 'https://www.okcoin.com',
+    order:5
   }
+
+
 }
 
 var tinker = function(url,callback){
