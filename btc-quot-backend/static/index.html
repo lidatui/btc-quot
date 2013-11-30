@@ -26,7 +26,7 @@
             <tbody>
             <tr ng-class="fadeClass(market)" ng-repeat="(market,q) in quot">
                 <td><a ng-href="{{q.url}}" target="_blank">{{q.title}}</a></td>
-                <td>{{q.USD.last|currency}} {{q.CNY.last|currency:'¥'}}</td>
+                <td class="{{updownClass(market)}}">{{q.USD.last|currency}} {{q.CNY.last|currency:'¥'}}</td>
                 <td>{{q.USD.buy|currency}} {{q.CNY.buy|currency:'¥'}}</td>
                 <td>{{q.USD.sell|currency}} {{q.CNY.sell|currency:'¥'}}</td>
                 <td>{{q.USD.high|currency}} {{q.CNY.high|currency:'¥'}}</td>
@@ -40,7 +40,7 @@
 
 <div class="row">
     <div class="large-12">
-        <h3 class="font-hei">市场价差对比</h3>
+        <h3 class="font-hei">市场价差对比(CNY)</h3>
         <table class="spread" >
             <thead>
                 <tr>
@@ -51,7 +51,7 @@
             <tbody>
                 <tr ng-repeat="(m,q) in quot">
                     <th>{{q.title}}</th>
-                    <td ng-repeat="(mt,qt) in quot" >11</td>
+                    <td ng-repeat="(mt,qt) in quot" ng-class="subtractClass(subtract(q.CNY.last,qt.CNY.last))">{{subtract(q.CNY.last,qt.CNY.last)}}</td>
                 </tr>
             </tbody>
         </table>
