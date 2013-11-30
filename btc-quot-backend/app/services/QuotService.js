@@ -71,6 +71,7 @@ var tinker = function(url,callback){
 var btcchinaTinker = function(){
   tinker("http://data.btcchina.com/data/ticker",function(data){
     QuotData.btcchina.CNY = {
+      time: new Date(),
       last: parseFloat(data.ticker.last),
       buy: parseFloat(data.ticker.buy),
       sell: parseFloat(data.ticker.sell),
@@ -84,6 +85,7 @@ var btcchinaTinker = function(){
 var fxbtcTinker = function(){
   tinker("https://data.fxbtc.com/api?op=query_ticker&symbol=btc_cny",function(data){
     QuotData.fxbtc.CNY = {
+      time: new Date(),
       last: parseFloat(data.ticker.last_rate),
       buy: parseFloat(data.ticker.bid),
       sell: parseFloat(data.ticker.ask),
@@ -97,6 +99,7 @@ var fxbtcTinker = function(){
 var chbtcTinker = function(){
   tinker("http://api.chbtc.com/data/ticker",function(data){
     QuotData.chbtc.CNY = {
+      time: new Date(),
       last: parseFloat(data.ticker.last),
       buy: parseFloat(data.ticker.buy),
       sell: parseFloat(data.ticker.sell),
@@ -111,6 +114,7 @@ var chbtcTinker = function(){
 var okcoinTinker = function(){
   tinker("https://www.okcoin.com/api/ticker.do",function(data){
     QuotData.okcoin.CNY = {
+      time: new Date(),
       last: parseFloat(data.ticker.last),
       buy: parseFloat(data.ticker.buy),
       sell: parseFloat(data.ticker.sell),
@@ -126,6 +130,7 @@ var okcoinTinker = function(){
 var mtgoxCNYTinker = function(){
   tinker("https://data.mtgox.com/api/2/BTCCNY/money/ticker",function(data){
     QuotData.mtgox.CNY = {
+      time: new Date(),
       last: parseFloat(data.data.last.value),
       buy: parseFloat(data.data.buy.value),
       sell: parseFloat(data.data.sell.value),
@@ -139,6 +144,7 @@ var mtgoxCNYTinker = function(){
 var mtgoxUSDTinker = function(){
   tinker("https://data.mtgox.com/api/2/BTCUSD/money/ticker",function(data){
     QuotData.mtgox.USD = {
+      time: new Date(),
       last: parseFloat(data.data.last.value),
       buy: parseFloat(data.data.buy.value),
       sell: parseFloat(data.data.sell.value),
@@ -154,6 +160,7 @@ var mtgoxUSDTinker = function(){
 var bitstampUSDTinker = function(){
   tinker("https://www.bitstamp.net/api/ticker/",function(data){
     QuotData.bitstamp.USD = {
+      time: new Date(),
       last: parseFloat(data.last),
       buy: parseFloat(data.bid),
       sell: parseFloat(data.ask),
@@ -169,6 +176,7 @@ var bitstampUSDTinker = function(){
 var q796USDTinker = function(){
   tinker("http://api.796.com/apiV2/ticker.html?op=futures",function(data){
     QuotData.q796.USD = {
+      time: new Date(),
       last: parseFloat(data.return.last),
       buy: parseFloat(data.return.buy),
       sell: parseFloat(data.return.sell),
