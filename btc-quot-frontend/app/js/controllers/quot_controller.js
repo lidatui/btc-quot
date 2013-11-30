@@ -7,6 +7,10 @@
       return marketStyle[market].fadeClass;
     };
 
+    $scope.updownClass = function(market){
+      return marketStyle[market].updownClass;
+    };
+
 
     var valueListener = function(market){
       return function(newValue, oldValue){
@@ -36,7 +40,18 @@
     $scope.$watch('quot.bitstamp.USD.last', valueListener('bitstamp'));
     $scope.$watch('quot.q796.USD.last', valueListener('q796'));
 
-
+    $scope.subtract = function(v1, v2){
+      if(!v1 || !v2 || v1 - v2 === 0){
+        return 'N/A';
+      }
+      return (v1 - v2).toFixed(2);
+    };
+    $scope.subtractClass = function(value){
+      if(!value || value === 'N/A'){
+        return '';
+      }
+      return value > 0 ? 'up' : 'down';
+    };
 
     $interval(function(){
       QuotService.query().success(function(data){

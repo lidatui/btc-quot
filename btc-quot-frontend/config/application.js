@@ -80,6 +80,16 @@ module.exports = require(process.env['LINEMAN_MAIN']).config.extend('application
     }
   },
 
+  pages:{
+    dist: {
+      files:{
+        "../btc-quot-backend/static" :"<%= files.pages.source %>",
+        "../btc-quot-backend/static/index.html": "app/templates/homepage.*"
+      }
+    }
+  },
+
+
   // configures grunt-watch-nospawn to listen for changes to
   // and recompile angular templates, also swaps lineman default
   // watch target concat with concat_sourcemap

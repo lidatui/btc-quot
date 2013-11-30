@@ -24,7 +24,12 @@ module.exports = require(process.env['LINEMAN_MAIN']).config.extend('files', {
     app: [
       "app/js/app.js",
       "app/js/**/*.js"
-    ]
+    ],
+    minified: "../btc-quot-backend/static/js/app.js"
+  },
+
+  css:{
+    minified: "../btc-quot-backend/static/css/app.css"
   },
 
   less: {
