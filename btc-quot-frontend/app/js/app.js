@@ -1,3 +1,3 @@
 (function(angular){
-  angular.module('app',[]);
+  angular.module('app',["ngResource", "ngRoute"]);
 })(angular);

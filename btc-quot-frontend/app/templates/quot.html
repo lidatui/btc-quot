@@ -1,0 +1,49 @@
+<div class="row">
+    <div class="large-12">
+        <h3 class="font-hei">市场行情</h3>
+        <table class="quot">
+            <thead>
+            <tr>
+                <th ng-click="sort('title')" ng-class="{'sort': sortColumn==='title'}">市场</th>
+                <th ng-click="sort('CNY.last')" ng-class="{'sort': sortColumn==='CNY.last'}">最新价</th>
+                <th ng-click="sort('CNY.buy')" ng-class="{'sort': sortColumn==='CNY.buy'}">买入价</th>
+                <th ng-click="sort('CNY.sell')" ng-class="{'sort': sortColumn==='CNY.sell'}">卖出价</th>
+                <th ng-click="sort('CNY.high')" ng-class="{'sort': sortColumn==='CNY.high'}">最高价</th>
+                <th ng-click="sort('CNY.low')" ng-class="{'sort': sortColumn==='CNY.low'}">最低价</th>
+                <th ng-click="sort('CNY.vol')" ng-class="{'sort': sortColumn==='CNY.vol'}">成交量</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-class="fadeClass(q.market)" ng-repeat="q in quotList | orderBy: sortExpr">
+                <td><a ng-href="{{q.url}}" target="_blank">{{q.title}}</a></td>
+                <td class="{{updownClass(q.market)}}" title="{{q.USD.time|date:'yyyy-MM-dd HH:mm:ss'}} {{q.CNY.time|date:'yyyy-MM-dd HH:mm:ss'}}">{{q.USD.last|currency}} {{q.CNY.last|currency:'¥'}}</td>
+                <td>{{q.USD.buy|currency}} {{q.CNY.buy|currency:'¥'}}</td>
+                <td>{{q.USD.sell|currency}} {{q.CNY.sell|currency:'¥'}}</td>
+                <td>{{q.USD.high|currency}} {{q.CNY.high|currency:'¥'}}</td>
+                <td>{{q.USD.low|currency}} {{q.CNY.low|currency:'¥'}}</td>
+                <td ng-bind="(q.USD.vol || q.CNY.vol ) | number: 2"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="large-12">
+        <h3 class="font-hei">市场价差对比(CNY)</h3>
+        <table class="spread" >
+            <thead>
+            <tr>
+                <th></th>
+                <th ng-repeat="qt in quotList">{{qt.title}}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="q in quotList">
+                <th>{{q.title}}</th>
+                <td ng-repeat="qt in quotList" ng-class="subtractClass(subtract(q.CNY.last,qt.CNY.last))">{{subtract(q.CNY.last,qt.CNY.last)}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
