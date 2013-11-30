@@ -91,7 +91,7 @@
         watched = true;
         $scope.quotList = quotList;
       });
-    },2000);
+    },2500);
 
   });
 })(angular);
