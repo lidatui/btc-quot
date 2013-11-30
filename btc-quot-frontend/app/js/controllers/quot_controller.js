@@ -59,6 +59,20 @@
       return value > 0 ? 'up' : 'down';
     };
 
+
+    $scope.sortExpr = 'order';
+    $scope.sortColumn = 'order';
+    $scope.sort = function(column){
+      $scope.sortColumn = column;
+
+      if($scope.sortColumn !== column){
+        $scope.sortExpr = column;
+        return;
+      }
+      return $scope.sortExpr.indexOf('-') !== -1 ? $scope.sortExpr = column : $scope.sortExpr = '-'+column;
+    };
+
+
     $interval(function(){
       QuotService.query().success(function(data){
         $scope.quot = data;
