@@ -43,7 +43,7 @@ var QuotData = {
 
 }
 
-var tinker = function(url,callback){
+var tinker = function(url,callback,timeout){
   var protocol = http;
   if(url.indexOf('https') === 0){
     protocol = https;
@@ -61,7 +61,7 @@ var tinker = function(url,callback){
         console.error(e);
       }
     });
-  }).setTimeout(10000,function(){
+  }).setTimeout( timeout? timeout : 10000,function(){
       console.log(url+' timeout......');
     });
 }
@@ -83,6 +83,7 @@ var btcchinaTinker = function(){
 }
 
 var fxbtcTinker = function(){
+  console.log('fxbtc tinker....');
   tinker("https://data.fxbtc.com/api?op=query_ticker&symbol=btc_cny",function(data){
     QuotData.fxbtc.CNY = {
       time: new Date(),
@@ -93,7 +94,9 @@ var fxbtcTinker = function(){
       low: parseFloat(data.ticker.low),
       vol: parseFloat(data.ticker.vol)
     }
-  });
+    console.log('fxbtc tinker....done');
+  },30000);
+
 }
 
 var chbtcTinker = function(){
@@ -188,7 +191,7 @@ var q796USDTinker = function(){
 }
 
 setInterval(btcchinaTinker,5000);
-setInterval(fxbtcTinker,10000);
+setInterval(fxbtcTinker,30000);
 setInterval(chbtcTinker,10000);
 setInterval(okcoinTinker,10000);
 setInterval(mtgoxCNYTinker,10000);
