@@ -1,124 +1,165 @@
 var http = require('http');
 var https = require('https');
 
-var quot = {};
-var refreshQuot =  function () {
-  try {
-    http.get("http://data.btcchina.com/data/ticker", function (result) {
-      var responseParts = [];
-      result.setEncoding('utf8');
-      result.on("data", function (chunk) {
-        responseParts.push(chunk);
-      });
-      result.on("end", function () {
-        try {
-          //console.log('btcChina -> ' + responseParts.join(''));
-          quot.btcChina = JSON.parse(responseParts.join(''));
-        } catch (e) {
-          console.error(e);
-        }
 
-      });
-    }).setTimeout(5000,function(){
-        console.log('btcChina timeout......');
-      });
-
-    https.get("https://data.fxbtc.com/api?op=query_ticker&symbol=btc_cny", function (result) {
-      var responseParts = [];
-      result.setEncoding('utf8');
-      result.on("data", function (chunk) {
-        responseParts.push(chunk);
-      });
-      result.on("end", function () {
-        try {
-          //console.log('fxBtc -> ' + responseParts.join(''));
-          quot.fxBtc = JSON.parse(responseParts.join(''));
-        } catch (e) {
-          console.error(e);
-        }
-      });
-    }).setTimeout(5000,function(){
-        console.log('fxBtc timeout......');
-      });
-
-    https.get("https://www.okcoin.com/api/ticker.do", function (result) {
-      var responseParts = [];
-      result.setEncoding('utf8');
-      result.on("data", function (chunk) {
-        responseParts.push(chunk);
-      });
-      result.on("end", function () {
-        try {
-          //console.log('okcoin -> ' + responseParts.join(''));
-          quot.okcoin = JSON.parse(responseParts.join(''));
-        } catch (e) {
-          console.error(e);
-        }
-      });
-    }).setTimeout(5000,function(){
-        console.log('okcoin timeout......');
-      });
-
-    https.get("https://data.mtgox.com/api/2/BTCUSD/money/ticker", function (result) {
-      var responseParts = [];
-      result.setEncoding('utf8');
-      result.on("data", function (chunk) {
-        responseParts.push(chunk);
-      });
-      result.on("end", function () {
-        try {
-          //console.log('mtgox -> ' + responseParts.join(''));
-          quot.mtgox = JSON.parse(responseParts.join(''));
-        } catch (e) {
-          console.error(e);
-        }
-      });
-    }).setTimeout(5000,function(){
-        console.log('mtgox timeout......');
-      });
-
-    https.get("https://www.bitstamp.net/api/ticker/", function (result) {
-      var responseParts = [];
-      result.setEncoding('utf8');
-      result.on("data", function (chunk) {
-        responseParts.push(chunk);
-      });
-      result.on("end", function () {
-        try {
-          //console.log('bitstamp -> ' + responseParts.join(''));
-          quot.bitstamp = JSON.parse(responseParts.join(''));
-        } catch (e) {
-          console.error(e);
-        }
-      });
-    }).setTimeout(5000,function(){
-        console.log('bitstamp timeout......');
-      });;
-
-    http.get("http://api.796.com/apiV2/ticker.html?op=futures", function (result) {
-      var responseParts = [];
-      result.setEncoding('utf8');
-      result.on("data", function (chunk) {
-        responseParts.push(chunk);
-      });
-      result.on("end", function () {
-        try {
-          //console.log('q796 -> ' + responseParts.join(''));
-          quot.q796 = JSON.parse(responseParts.join(''));
-        } catch (e) {
-          console.error(e);
-        }
-      });
-    }).setTimeout(5000,function(){
-        console.log('q796 timeout......');
-      });
-  } catch (e) {
-    console.error(e);
+var QuotData = {
+  btcchina: {
+    title: 'BTC中国',
+    url: 'http://www.btcchina.com'
+  },
+  fxbtc: {
+    title: 'FXBTC',
+    url: 'http://www.fxbtc.com'
+  },
+  okcoin: {
+    title: 'OKCOIN',
+    url: 'https://www.okcoin.com'
+  },
+  q796: {
+    title: '796期货',
+    url: 'https://796.com/'
+  },
+  bitstamp: {
+    title: 'Bitstamp',
+    url: 'https://www.bitstamp.net/'
+  },
+  mtgox: {
+    title: 'MT.GOX',
+    url: 'https://www.mtgox.com'
   }
 }
 
-setInterval(refreshQuot, 5000);
+var tinker = function(url,callback){
+  var protocol = http;
+  if(url.indexOf('https') === 0){
+    protocol = https;
+  }
+  protocol.get(url, function (result) {
+    var responseParts = [];
+    result.setEncoding('utf8');
+    result.on("data", function (chunk) {
+      responseParts.push(chunk);
+    });
+    result.on("end", function () {
+      try {
+        callback(JSON.parse(responseParts.join('')));
+      } catch (e) {
+        console.error(e);
+      }
+    });
+  }).setTimeout(10000,function(){
+      console.log(url+' timeout......');
+    });
+}
+
+
+
+var btcchinaTinker = function(){
+  tinker("http://data.btcchina.com/data/ticker",function(data){
+    QuotData.btcchina.CNY = {
+      last: parseFloat(data.ticker.last),
+      buy: parseFloat(data.ticker.buy),
+      sell: parseFloat(data.ticker.sell),
+      high: parseFloat(data.ticker.high),
+      low: parseFloat(data.ticker.low),
+      vol: parseFloat(data.ticker.vol)
+    }
+  });
+}
+
+var fxbtcTinker = function(){
+  tinker("https://data.fxbtc.com/api?op=query_ticker&symbol=btc_cny",function(data){
+    QuotData.fxbtc.CNY = {
+      last: parseFloat(data.ticker.last_rate),
+      buy: parseFloat(data.ticker.bid),
+      sell: parseFloat(data.ticker.ask),
+      high: parseFloat(data.ticker.high),
+      low: parseFloat(data.ticker.low),
+      vol: parseFloat(data.ticker.vol)
+    }
+  });
+}
+
+var okcoinTinker = function(){
+  tinker("https://www.okcoin.com/api/ticker.do",function(data){
+    QuotData.okcoin.CNY = {
+      last: parseFloat(data.ticker.last),
+      buy: parseFloat(data.ticker.buy),
+      sell: parseFloat(data.ticker.sell),
+      high: parseFloat(data.ticker.high),
+      low: parseFloat(data.ticker.low),
+      vol: parseFloat(data.ticker.vol)
+    }
+  });
+}
+
+//-----------------------
+
+var mtgoxCNYTinker = function(){
+  tinker("https://data.mtgox.com/api/2/BTCCNY/money/ticker",function(data){
+    QuotData.mtgox.CNY = {
+      last: parseFloat(data.data.last.value),
+      buy: parseFloat(data.data.buy.value),
+      sell: parseFloat(data.data.sell.value),
+      high: parseFloat(data.data.high.value),
+      low: parseFloat(data.data.low.value),
+      vol: parseFloat(data.data.vol.value)
+    }
+  });
+}
+
+var mtgoxUSDTinker = function(){
+  tinker("https://data.mtgox.com/api/2/BTCUSD/money/ticker",function(data){
+    QuotData.mtgox.USD = {
+      last: parseFloat(data.data.last.value),
+      buy: parseFloat(data.data.buy.value),
+      sell: parseFloat(data.data.sell.value),
+      high: parseFloat(data.data.high.value),
+      low: parseFloat(data.data.low.value),
+      vol: parseFloat(data.data.vol.value)
+    }
+  });
+}
+
+//----------------------
+
+var bitstampUSDTinker = function(){
+  tinker("https://www.bitstamp.net/api/ticker/",function(data){
+    QuotData.bitstamp.USD = {
+      last: parseFloat(data.last),
+      buy: parseFloat(data.bid),
+      sell: parseFloat(data.ask),
+      high: parseFloat(data.high),
+      low: parseFloat(data.low),
+      vol: parseFloat(data.volume)
+    }
+  });
+}
+
+//---------------------
+
+var q796USDTinker = function(){
+  tinker("http://api.796.com/apiV2/ticker.html?op=futures",function(data){
+    QuotData.q796.USD = {
+      last: parseFloat(data.return.last),
+      buy: parseFloat(data.return.buy),
+      sell: parseFloat(data.return.sell),
+      high: parseFloat(data.return.high),
+      low: parseFloat(data.return.low),
+      vol: parseFloat(data.return.vol)
+    }
+  });
+}
+
+setInterval(btcchinaTinker,5000);
+setInterval(fxbtcTinker,10000);
+setInterval(okcoinTinker,10000);
+setInterval(mtgoxCNYTinker,10000);
+setInterval(mtgoxUSDTinker,10000);
+setInterval(bitstampUSDTinker,10000);
+setInterval(q796USDTinker,10000);
+
 
 exports.find = function(){
-   return quot;
+   return QuotData;
 };
