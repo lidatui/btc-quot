@@ -39,12 +39,6 @@
         });
       };
     };
-    $scope.$watch('quot.btcchina.CNY.last', valueListener('btcchina'));
-    $scope.$watch('quot.fxbtc.CNY.last', valueListener('fxbtc'));
-    $scope.$watch('quot.okcoin.CNY.last', valueListener('okcoin'));
-    $scope.$watch('quot.mtgox.USD.last', valueListener('mtgox'));
-    $scope.$watch('quot.bitstamp.USD.last', valueListener('bitstamp'));
-    $scope.$watch('quot.q796.USD.last', valueListener('q796'));
 
     $scope.subtract = function(v1, v2){
       if(!v1 || !v2 || v1 - v2 === 0){
@@ -60,8 +54,8 @@
     };
 
 
-    $scope.sortExpr = 'order';
-    $scope.sortColumn = 'order';
+    $scope.sortExpr = '';
+    $scope.sortColumn = '';
     $scope.sort = function(column){
       $scope.sortColumn = column;
 
@@ -72,14 +66,19 @@
       return $scope.sortExpr.indexOf('-') !== -1 ? $scope.sortExpr = column : $scope.sortExpr = '-'+column;
     };
 
-
+    var watched = false;
     $interval(function(){
       QuotService.query().success(function(data){
         $scope.quot = data;
         var quotList = [];
         for(var key in data){
           quotList.push(data[key]);
+          if(!watched){
+            $scope.$watch('quot.'+ data[key].market +'.USD.last', valueListener(data[key].market));
+            $scope.$watch('quot.'+ data[key].market +'.CNY.last', valueListener(data[key].market));
+          }
         }
+        watched = true;
         $scope.quotList = quotList;
       });
     },2000);

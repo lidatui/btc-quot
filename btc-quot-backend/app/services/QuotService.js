@@ -6,39 +6,38 @@ var QuotData = {
   mtgox: {
     market: 'mtgox',
     title: 'MT.GOX',
-    url: 'https://www.mtgox.com',
-    order:0
+    url: 'https://www.mtgox.com'
   },
   bitstamp: {
     market: 'bitstamp',
     title: 'Bitstamp',
-    url: 'https://www.bitstamp.net/',
-    order:1
+    url: 'https://www.bitstamp.net/'
   },
   q796: {
     market: 'q796',
     title: '796期货',
-    url: 'https://796.com/',
-    order:2
+    url: 'https://796.com/'
   },
 
   btcchina: {
     market: 'btcchina',
     title: 'BTC中国',
-    url: 'http://www.btcchina.com',
-    order:3
+    url: 'http://www.btcchina.com'
   },
   fxbtc: {
     market: 'fxbtc',
     title: 'FXBTC',
-    url: 'http://www.fxbtc.com',
-    order:4
+    url: 'http://www.fxbtc.com'
   },
   okcoin: {
     market: 'okcoin',
     title: 'OKCOIN',
-    url: 'https://www.okcoin.com',
-    order:5
+    url: 'https://www.okcoin.com'
+  },
+  chbtc: {
+    market: 'chbtc',
+    title: '中国比特币',
+    url: 'https://www.chbtc.com'
   }
 
 
@@ -94,6 +93,20 @@ var fxbtcTinker = function(){
     }
   });
 }
+
+var chbtcTinker = function(){
+  tinker("http://api.chbtc.com/data/ticker",function(data){
+    QuotData.chbtc.CNY = {
+      last: parseFloat(data.ticker.last),
+      buy: parseFloat(data.ticker.buy),
+      sell: parseFloat(data.ticker.sell),
+      high: parseFloat(data.ticker.high),
+      low: parseFloat(data.ticker.low),
+      vol: parseFloat(data.ticker.vol)
+    }
+  });
+}
+
 
 var okcoinTinker = function(){
   tinker("https://www.okcoin.com/api/ticker.do",function(data){
@@ -168,6 +181,7 @@ var q796USDTinker = function(){
 
 setInterval(btcchinaTinker,5000);
 setInterval(fxbtcTinker,10000);
+setInterval(chbtcTinker,10000);
 setInterval(okcoinTinker,10000);
 setInterval(mtgoxCNYTinker,10000);
 setInterval(mtgoxUSDTinker,10000);
