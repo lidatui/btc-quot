@@ -19,11 +19,16 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(express.query());
   app.use(express.cookieParser('your secret here'));
-  app.use(express.session());
+  app.use(express.cookieSession());
+  app.use(express.csrf({value: csrfValue}));
   app.use(express.static(path.join(__dirname, '/static')));
   app.use(function(err, req, res, next){
     console.error(err.stack);
     res.send(500, 'Something broke!');
+  });
+  app.use(function(req, res, next) {
+    res.cookie('XSRF-TOKEN', req.csrfToken());
+    next();
   });
 });
 
@@ -56,3 +61,13 @@ var server = http.createServer(app).listen(app.get('port'), function(){
 process.on('uncaughtException',function(e){
   console.log(e.toString());
 });
+
+
+
+var csrfValue = function(req) {
+  var token = (req.body && req.body._csrf)
+    || (req.query && req.query._csrf)
+    || (req.headers['x-csrf-token'])
+    || (req.headers['x-xsrf-token']);
+  return token;
+};
