@@ -7,6 +7,8 @@
 
 module.exports = require(process.env['LINEMAN_MAIN']).config.extend('application', {
 
+  enableSass: true,
+
   // html5push state simulation
   server: {
     apiProxy: {

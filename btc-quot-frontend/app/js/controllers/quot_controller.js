@@ -77,7 +77,7 @@
     };
 
     var watched = false;
-    $interval(function(){
+    var cancelRefresh = $interval(function(){
       QuotService.query().success(function(data){
         $scope.quot = data;
         var quotList = [];
@@ -93,5 +93,8 @@
       });
     },2500);
 
+    $scope.$on('$destroy', function(e) {
+      $interval.cancel(cancelRefresh);
+    });
   });
 })(angular);
