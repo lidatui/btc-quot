@@ -78,7 +78,7 @@
 
     var watched = false;
     var cancelRefresh = $interval(function(){
-      QuotService.query().success(function(data){
+      QuotService.find().success(function(data){
         $scope.quot = data;
         var quotList = [];
         for(var key in data){

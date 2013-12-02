@@ -1,6 +1,6 @@
 angular.module("app").config(function($routeProvider, $locationProvider) {
 
-  $routeProvider.when('/', {
+  $routeProvider.when('/quot', {
     templateUrl: 'quot.html',
     controller: 'QuotController'
   });
@@ -11,6 +11,6 @@ angular.module("app").config(function($routeProvider, $locationProvider) {
   });
 
 
-  $routeProvider.otherwise({ redirectTo: '/' });
+  $routeProvider.otherwise({ redirectTo: '/quot' });
 
 });

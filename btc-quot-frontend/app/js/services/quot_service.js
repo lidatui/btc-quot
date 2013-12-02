@@ -1,11 +1,11 @@
 
 (function(angular){
   angular.module('app').factory('QuotService', function($http){
-    var query = function() {
+    var find = function() {
       return $http.get('/quot');
     };
     return {
-      query: query
+      find: find
     };
   });
 })(angular);
