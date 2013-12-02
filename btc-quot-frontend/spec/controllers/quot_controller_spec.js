@@ -4,7 +4,7 @@
     Given(function() {
       return module("app");
     });
-    Given(inject(function($controller, $rootScope, $interval,$timeout, QuotService) {
+    Given(inject(function($controller, $rootScope, $interval, $timeout, QuotService) {
       this.scope = $rootScope.$new();
       return $controller('QuotController', {
         $scope: this.scope,
