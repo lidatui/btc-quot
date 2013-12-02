@@ -201,5 +201,9 @@ setInterval(q796USDTinker,10000);
 
 
 exports.find = function(){
-   return QuotData;
+  var quotList = [];
+  for(var key in QuotData){
+    quotList.push(QuotData[key]);
+  }
+   return quotList;
 };

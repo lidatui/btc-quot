@@ -1,0 +1,39 @@
+<table class="quot" quotList="quotList">
+    <thead>
+    <tr>
+        <th ng-click="sort('title')" ng-class="{'sort': sortColumn==='title'}">市场</th>
+        <th ng-click="sort('CNY.last')" ng-class="{'sort': sortColumn==='CNY.last'}">最新价</th>
+        <th ng-click="sort('CNY.buy')" ng-class="{'sort': sortColumn==='CNY.buy'}">买入价</th>
+        <th ng-click="sort('CNY.sell')" ng-class="{'sort': sortColumn==='CNY.sell'}">卖出价</th>
+        <th ng-click="sort('CNY.high')" ng-class="{'sort': sortColumn==='CNY.high'}">最高价</th>
+        <th ng-click="sort('CNY.low')" ng-class="{'sort': sortColumn==='CNY.low'}">最低价</th>
+        <th ng-click="sort('CNY.vol')" ng-class="{'sort': sortColumn==='CNY.vol'}">成交量</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="{{fadeClass(q.market)}}" ng-repeat="q in quotList | orderBy: sortExpr">
+        <td><a ng-href="{{q.url}}" target="_blank">{{q.title}}</a></td>
+        <td class="{{updownClass(q.market)}}" title="{{q.USD.time|date:'yyyy-MM-dd HH:mm:ss'}} {{q.CNY.time|date:'yyyy-MM-dd HH:mm:ss'}}">
+            <div>{{q.USD.last|currency}}</div>
+            <div>{{q.CNY.last|currency:'¥'}}</div>
+        </td>
+        <td>
+            <div>{{q.USD.buy|currency}}</div>
+            <div>{{q.CNY.buy|currency:'¥'}}</div>
+        </td>
+        <td>
+            <div>{{q.USD.sell|currency}}</div>
+            <div>{{q.CNY.sell|currency:'¥'}}</div>
+        </td>
+        <td>
+            <div>{{q.USD.high|currency}}</div>
+            <div>{{q.CNY.high|currency:'¥'}}</div>
+        </td>
+        <td>
+            <div>{{q.USD.low|currency}}</div>
+            <div>{{q.CNY.low|currency:'¥'}}</div>
+        </td>
+        <td ng-bind="(q.USD.vol || q.CNY.vol ) | number: 2"></td>
+    </tr>
+    </tbody>
+</table>
