@@ -102,10 +102,6 @@
             }
           });
           element.on('click', function () {
-            console.log(column);
-            console.log(scope.sortColumn);
-            console.log(scope.sortExpr);
-
             if (scope.sortColumn !== column || scope.sortColumn === '') {
               scope.sortColumn = column;
               scope.sortExpr = column;
