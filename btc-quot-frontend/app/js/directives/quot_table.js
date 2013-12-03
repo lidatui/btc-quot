@@ -5,31 +5,6 @@
         restrict: 'A',
         replace: true,
         templateUrl: 'directives/quot_table.html',
-        controller: function ($scope) {
-
-          $scope.sortExpr = '';
-          $scope.sortColumn = '';
-          $scope.sort = function (column) {
-
-            if ($scope.sortColumn !== column || $scope.sortColumn === '') {
-              $scope.sortColumn = column;
-              $scope.sortExpr = column;
-              return;
-            }
-
-            if ($scope.sortExpr.indexOf('-') !== -1) {
-              $scope.sortColumn = '';
-              $scope.sortExpr = '';
-              return;
-            }
-
-            if ($scope.sortColumn === column) {
-              $scope.sortExpr = '-' + column;
-              return;
-            }
-          };
-
-        },
         link: function (scope, element, attributes) {
           var marketStyle = {};
 
@@ -46,7 +21,6 @@
             }
             return marketStyle[market].updownClass;
           };
-
 
           var valueListener = function (market) {
             return function (newValue, oldValue) {
