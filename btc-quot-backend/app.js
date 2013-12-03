@@ -20,7 +20,7 @@ app.configure(function(){
   app.use(express.query());
   app.use(express.cookieParser('your secret here'));
   app.use(express.cookieSession());
-  app.use(express.csrf({value: csrfValue}));
+  app.use(express.csrf());
   app.use(express.static(path.join(__dirname, '/static')));
   app.use(function(err, req, res, next){
     console.error(err.stack);
@@ -61,13 +61,3 @@ var server = http.createServer(app).listen(app.get('port'), function(){
 process.on('uncaughtException',function(e){
   console.log(e.toString());
 });
-
-
-
-var csrfValue = function(req) {
-  var token = (req.body && req.body._csrf)
-    || (req.query && req.query._csrf)
-    || (req.headers['x-csrf-token'])
-    || (req.headers['x-xsrf-token']);
-  return token;
-};
