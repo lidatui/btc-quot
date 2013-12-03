@@ -3,7 +3,7 @@
     return {
       restrict: 'A',
       replace:true,
-      templateUrl: 'directives/quotTable.html',
+      templateUrl: 'directives/quot_table.html',
       controller: function($scope){
 
         $scope.sortExpr = '';
@@ -87,7 +87,6 @@
 
       }
     };
-
 
   });
 

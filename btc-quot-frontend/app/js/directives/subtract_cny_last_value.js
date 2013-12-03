@@ -11,7 +11,6 @@
         element.text((qtLast - qLast).toFixed(2));
         element.removeClass().addClass((qtLast - qLast) > 0 ? 'up' : 'down');
       }
-
     };
   });
 
