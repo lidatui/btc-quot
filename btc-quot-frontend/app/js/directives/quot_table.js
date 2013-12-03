@@ -4,6 +4,9 @@
       return {
         restrict: 'A',
         replace: true,
+        scope:{
+          quotList: '=list'
+        },
         templateUrl: 'directives/quot_table.html',
         link: function (scope, element, attributes) {
           var marketStyle = {};
