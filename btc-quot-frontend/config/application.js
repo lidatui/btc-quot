@@ -91,6 +91,12 @@ module.exports = require(process.env['LINEMAN_MAIN']).config.extend('application
     }
   },
 
+  webfonts:{
+    dist:{
+      dest: "../btc-quot-backend/static"
+    }
+  },
+
 
   // configures grunt-watch-nospawn to listen for changes to
   // and recompile angular templates, also swaps lineman default
