@@ -20,15 +20,10 @@ app.configure(function(){
   app.use(express.query());
   app.use(express.cookieParser('your secret here'));
   app.use(express.cookieSession());
-  app.use(express.csrf());
   app.use(express.static(path.join(__dirname, '/static')));
   app.use(function(err, req, res, next){
     console.error(err.stack);
     res.send(500, 'Something broke!');
-  });
-  app.use(function(req, res, next) {
-    res.cookie('XSRF-TOKEN', req.csrfToken());
-    next();
   });
 });
 
